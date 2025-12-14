@@ -39,6 +39,20 @@ namespace CommonLibrary
 
         public int m_fetchInterval = 10;
         public int m_fetchTimes = 10;
+        
+        // 颜色判别优先级配置（1-5，值为颜色名称：Red/Blue/Green/Yellow/White/NULL）
+        public string m_ColorPriority1 = "Red";
+        public string m_ColorPriority2 = "White";
+        public string m_ColorPriority3 = "Blue";
+        public string m_ColorPriority4 = "Yellow";
+        public string m_ColorPriority5 = "Green";
+
+        // 串口输出配置（每种颜色对应的输出指令：Y1/Y2/Y3/Y4/Y3&Y4）
+        public string m_OutputRed = "Y1";
+        public string m_OutputBlue = "Y2";
+        public string m_OutputGreen = "Y3";
+        public string m_OutputYellow = "Y4";
+        public string m_OutputWhite = "Y3&Y4";
         // 电机运动信息（预设）
         public int m_motorMinX = -100;
         public int m_motorMinZ = -100;

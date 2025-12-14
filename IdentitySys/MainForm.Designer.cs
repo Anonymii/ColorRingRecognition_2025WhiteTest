@@ -35,11 +35,17 @@ namespace IdentitySys
             this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
             this.skinGroupBox1 = new CCWin.SkinControl.SkinGroupBox();
             this.ClearNum = new CommonLibrary.myButton();
-            this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
-            this.skinLabel6 = new CCWin.SkinControl.SkinLabel();
-            this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
-            this.OtherColorNumber = new CCWin.SkinControl.SkinTextBox();
+            this.skinLabelNone = new CCWin.SkinControl.SkinLabel();
+            this.skinLabelWhite = new CCWin.SkinControl.SkinLabel();
+            this.skinLabelYellow = new CCWin.SkinControl.SkinLabel();
+            this.skinLabelGreen = new CCWin.SkinControl.SkinLabel();
+            this.skinLabelBlue = new CCWin.SkinControl.SkinLabel();
+            this.skinLabelRed = new CCWin.SkinControl.SkinLabel();
+            this.NoneNumber = new CCWin.SkinControl.SkinTextBox();
             this.WhiteNumber = new CCWin.SkinControl.SkinTextBox();
+            this.YellowNumber = new CCWin.SkinControl.SkinTextBox();
+            this.GreenNumber = new CCWin.SkinControl.SkinTextBox();
+            this.BlueNumber = new CCWin.SkinControl.SkinTextBox();
             this.RedNumber = new CCWin.SkinControl.SkinTextBox();
             this.LastTubeColor = new CommonLibrary.myButton();
             this.skinLabel4 = new CCWin.SkinControl.SkinLabel();
@@ -125,6 +131,28 @@ namespace IdentitySys
             this.btnLevel1Store = new CommonLibrary.myButton();
             this.skinTabPage5 = new CCWin.SkinControl.SkinTabPage();
             this.skinGroupBox10 = new CCWin.SkinControl.SkinGroupBox();
+            this.grpColorPriority = new CCWin.SkinControl.SkinGroupBox();
+            this.lblPriority1 = new CCWin.SkinControl.SkinLabel();
+            this.lblPriority2 = new CCWin.SkinControl.SkinLabel();
+            this.lblPriority3 = new CCWin.SkinControl.SkinLabel();
+            this.lblPriority4 = new CCWin.SkinControl.SkinLabel();
+            this.lblPriority5 = new CCWin.SkinControl.SkinLabel();
+            this.cboPriority1 = new System.Windows.Forms.ComboBox();
+            this.cboPriority2 = new System.Windows.Forms.ComboBox();
+            this.cboPriority3 = new System.Windows.Forms.ComboBox();
+            this.cboPriority4 = new System.Windows.Forms.ComboBox();
+            this.cboPriority5 = new System.Windows.Forms.ComboBox();
+            this.grpSerialOutput = new CCWin.SkinControl.SkinGroupBox();
+            this.lblOutputRed = new CCWin.SkinControl.SkinLabel();
+            this.lblOutputBlue = new CCWin.SkinControl.SkinLabel();
+            this.lblOutputGreen = new CCWin.SkinControl.SkinLabel();
+            this.lblOutputYellow = new CCWin.SkinControl.SkinLabel();
+            this.lblOutputWhite = new CCWin.SkinControl.SkinLabel();
+            this.cboOutputRed = new System.Windows.Forms.ComboBox();
+            this.cboOutputBlue = new System.Windows.Forms.ComboBox();
+            this.cboOutputGreen = new System.Windows.Forms.ComboBox();
+            this.cboOutputYellow = new System.Windows.Forms.ComboBox();
+            this.cboOutputWhite = new System.Windows.Forms.ComboBox();
             this.ImageTest = new CommonLibrary.myButton();
             this.btnChangePassword = new CommonLibrary.myButton();
             this.btnCounterManage = new CommonLibrary.myButton();
@@ -195,11 +223,17 @@ namespace IdentitySys
             this.skinGroupBox1.BackColor = System.Drawing.Color.Transparent;
             this.skinGroupBox1.BorderColor = System.Drawing.Color.White;
             this.skinGroupBox1.Controls.Add(this.ClearNum);
-            this.skinGroupBox1.Controls.Add(this.skinLabel7);
-            this.skinGroupBox1.Controls.Add(this.skinLabel6);
-            this.skinGroupBox1.Controls.Add(this.skinLabel5);
-            this.skinGroupBox1.Controls.Add(this.OtherColorNumber);
+            this.skinGroupBox1.Controls.Add(this.skinLabelNone);
+            this.skinGroupBox1.Controls.Add(this.skinLabelWhite);
+            this.skinGroupBox1.Controls.Add(this.skinLabelYellow);
+            this.skinGroupBox1.Controls.Add(this.skinLabelGreen);
+            this.skinGroupBox1.Controls.Add(this.skinLabelBlue);
+            this.skinGroupBox1.Controls.Add(this.skinLabelRed);
+            this.skinGroupBox1.Controls.Add(this.NoneNumber);
             this.skinGroupBox1.Controls.Add(this.WhiteNumber);
+            this.skinGroupBox1.Controls.Add(this.YellowNumber);
+            this.skinGroupBox1.Controls.Add(this.GreenNumber);
+            this.skinGroupBox1.Controls.Add(this.BlueNumber);
             this.skinGroupBox1.Controls.Add(this.RedNumber);
             this.skinGroupBox1.Controls.Add(this.LastTubeColor);
             this.skinGroupBox1.Controls.Add(this.skinLabel4);
@@ -228,7 +262,7 @@ namespace IdentitySys
             this.ClearNum.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ClearNum.DownBack = null;
             this.ClearNum.ForeColor = System.Drawing.Color.White;
-            this.ClearNum.Location = new System.Drawing.Point(1006, 48);
+            this.ClearNum.Location = new System.Drawing.Point(1310, 30);
             this.ClearNum.MouseBack = null;
             this.ClearNum.Name = "ClearNum";
             this.ClearNum.NormlBack = null;
@@ -240,132 +274,83 @@ namespace IdentitySys
             this.ClearNum.UseVisualStyleBackColor = false;
             this.ClearNum.Click += new System.EventHandler(this.ClearNum_Click);
             // 
-            // skinLabel7
+            // skinLabelRed
             // 
-            this.skinLabel7.AutoSize = true;
-            this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel7.BorderColor = System.Drawing.Color.Black;
-            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel7.ForeColor = System.Drawing.Color.White;
-            this.skinLabel7.Location = new System.Drawing.Point(1178, 25);
-            this.skinLabel7.Name = "skinLabel7";
-            this.skinLabel7.Size = new System.Drawing.Size(146, 41);
-            this.skinLabel7.TabIndex = 56;
-            this.skinLabel7.Text = "其余颜色";
+            this.skinLabelRed.AutoSize = true;
+            this.skinLabelRed.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabelRed.BorderColor = System.Drawing.Color.Black;
+            this.skinLabelRed.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabelRed.ForeColor = System.Drawing.Color.White;
+            this.skinLabelRed.Location = new System.Drawing.Point(970, 15);
+            this.skinLabelRed.Name = "skinLabelRed";
+            this.skinLabelRed.Size = new System.Drawing.Size(32, 17);
+            this.skinLabelRed.TabIndex = 54;
+            this.skinLabelRed.Text = "红色";
             // 
-            // skinLabel6
+            // skinLabelBlue
             // 
-            this.skinLabel6.AutoSize = true;
-            this.skinLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel6.BorderColor = System.Drawing.Color.Black;
-            this.skinLabel6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel6.ForeColor = System.Drawing.Color.White;
-            this.skinLabel6.Location = new System.Drawing.Point(1093, 25);
-            this.skinLabel6.Name = "skinLabel6";
-            this.skinLabel6.Size = new System.Drawing.Size(82, 41);
-            this.skinLabel6.TabIndex = 55;
-            this.skinLabel6.Text = "白色";
+            this.skinLabelBlue.AutoSize = true;
+            this.skinLabelBlue.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabelBlue.BorderColor = System.Drawing.Color.Black;
+            this.skinLabelBlue.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabelBlue.ForeColor = System.Drawing.Color.White;
+            this.skinLabelBlue.Location = new System.Drawing.Point(1025, 15);
+            this.skinLabelBlue.Name = "skinLabelBlue";
+            this.skinLabelBlue.Size = new System.Drawing.Size(32, 17);
+            this.skinLabelBlue.TabIndex = 55;
+            this.skinLabelBlue.Text = "蓝色";
             // 
-            // skinLabel5
+            // skinLabelGreen
             // 
-            this.skinLabel5.AutoSize = true;
-            this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel5.BorderColor = System.Drawing.Color.Black;
-            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel5.ForeColor = System.Drawing.Color.White;
-            this.skinLabel5.Location = new System.Drawing.Point(1007, 25);
-            this.skinLabel5.Name = "skinLabel5";
-            this.skinLabel5.Size = new System.Drawing.Size(82, 41);
-            this.skinLabel5.TabIndex = 54;
-            this.skinLabel5.Text = "红色";
+            this.skinLabelGreen.AutoSize = true;
+            this.skinLabelGreen.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabelGreen.BorderColor = System.Drawing.Color.Black;
+            this.skinLabelGreen.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabelGreen.ForeColor = System.Drawing.Color.White;
+            this.skinLabelGreen.Location = new System.Drawing.Point(1080, 15);
+            this.skinLabelGreen.Name = "skinLabelGreen";
+            this.skinLabelGreen.Size = new System.Drawing.Size(32, 17);
+            this.skinLabelGreen.TabIndex = 56;
+            this.skinLabelGreen.Text = "绿色";
             // 
-            // OtherColorNumber
+            // skinLabelYellow
             // 
-            this.OtherColorNumber.BackColor = System.Drawing.Color.Transparent;
-            this.OtherColorNumber.DownBack = null;
-            this.OtherColorNumber.Icon = null;
-            this.OtherColorNumber.IconIsButton = false;
-            this.OtherColorNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.OtherColorNumber.IsPasswordChat = '\0';
-            this.OtherColorNumber.IsSystemPasswordChar = false;
-            this.OtherColorNumber.Lines = new string[] {
-        "0"};
-            this.OtherColorNumber.Location = new System.Drawing.Point(1253, 17);
-            this.OtherColorNumber.Margin = new System.Windows.Forms.Padding(0);
-            this.OtherColorNumber.MaxLength = 32767;
-            this.OtherColorNumber.MinimumSize = new System.Drawing.Size(28, 28);
-            this.OtherColorNumber.MouseBack = null;
-            this.OtherColorNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.OtherColorNumber.Multiline = false;
-            this.OtherColorNumber.Name = "OtherColorNumber";
-            this.OtherColorNumber.NormlBack = null;
-            this.OtherColorNumber.Padding = new System.Windows.Forms.Padding(5);
-            this.OtherColorNumber.ReadOnly = false;
-            this.OtherColorNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.OtherColorNumber.Size = new System.Drawing.Size(43, 28);
+            this.skinLabelYellow.AutoSize = true;
+            this.skinLabelYellow.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabelYellow.BorderColor = System.Drawing.Color.Black;
+            this.skinLabelYellow.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabelYellow.ForeColor = System.Drawing.Color.White;
+            this.skinLabelYellow.Location = new System.Drawing.Point(1135, 15);
+            this.skinLabelYellow.Name = "skinLabelYellow";
+            this.skinLabelYellow.Size = new System.Drawing.Size(32, 17);
+            this.skinLabelYellow.TabIndex = 57;
+            this.skinLabelYellow.Text = "黄色";
             // 
+            // skinLabelWhite
             // 
+            this.skinLabelWhite.AutoSize = true;
+            this.skinLabelWhite.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabelWhite.BorderColor = System.Drawing.Color.Black;
+            this.skinLabelWhite.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabelWhite.ForeColor = System.Drawing.Color.White;
+            this.skinLabelWhite.Location = new System.Drawing.Point(1190, 15);
+            this.skinLabelWhite.Name = "skinLabelWhite";
+            this.skinLabelWhite.Size = new System.Drawing.Size(32, 17);
+            this.skinLabelWhite.TabIndex = 58;
+            this.skinLabelWhite.Text = "白色";
             // 
-            this.OtherColorNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OtherColorNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OtherColorNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.OtherColorNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.OtherColorNumber.SkinTxt.Name = "BaseText";
-            this.OtherColorNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
-            this.OtherColorNumber.SkinTxt.TabIndex = 0;
-            this.OtherColorNumber.SkinTxt.Text = "0";
-            this.OtherColorNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.OtherColorNumber.SkinTxt.WaterText = "";
-            this.OtherColorNumber.TabIndex = 51;
-            this.OtherColorNumber.Text = "0";
-            this.OtherColorNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.OtherColorNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.OtherColorNumber.WaterText = "";
-            this.OtherColorNumber.WordWrap = true;
+            // skinLabelNone
             // 
-            // WhiteNumber
-            // 
-            this.WhiteNumber.BackColor = System.Drawing.Color.Transparent;
-            this.WhiteNumber.DownBack = null;
-            this.WhiteNumber.Icon = null;
-            this.WhiteNumber.IconIsButton = false;
-            this.WhiteNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.WhiteNumber.IsPasswordChat = '\0';
-            this.WhiteNumber.IsSystemPasswordChar = false;
-            this.WhiteNumber.Lines = new string[] {
-        "0"};
-            this.WhiteNumber.Location = new System.Drawing.Point(1130, 17);
-            this.WhiteNumber.Margin = new System.Windows.Forms.Padding(0);
-            this.WhiteNumber.MaxLength = 32767;
-            this.WhiteNumber.MinimumSize = new System.Drawing.Size(28, 28);
-            this.WhiteNumber.MouseBack = null;
-            this.WhiteNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.WhiteNumber.Multiline = false;
-            this.WhiteNumber.Name = "WhiteNumber";
-            this.WhiteNumber.NormlBack = null;
-            this.WhiteNumber.Padding = new System.Windows.Forms.Padding(5);
-            this.WhiteNumber.ReadOnly = false;
-            this.WhiteNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.WhiteNumber.Size = new System.Drawing.Size(43, 28);
-            // 
-            // 
-            // 
-            this.WhiteNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WhiteNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WhiteNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.WhiteNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.WhiteNumber.SkinTxt.Name = "BaseText";
-            this.WhiteNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
-            this.WhiteNumber.SkinTxt.TabIndex = 0;
-            this.WhiteNumber.SkinTxt.Text = "0";
-            this.WhiteNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.WhiteNumber.SkinTxt.WaterText = "";
-            this.WhiteNumber.TabIndex = 51;
-            this.WhiteNumber.Text = "0";
-            this.WhiteNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.WhiteNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.WhiteNumber.WaterText = "";
-            this.WhiteNumber.WordWrap = true;
+            this.skinLabelNone.AutoSize = true;
+            this.skinLabelNone.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabelNone.BorderColor = System.Drawing.Color.Black;
+            this.skinLabelNone.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabelNone.ForeColor = System.Drawing.Color.White;
+            this.skinLabelNone.Location = new System.Drawing.Point(1245, 15);
+            this.skinLabelNone.Name = "skinLabelNone";
+            this.skinLabelNone.Size = new System.Drawing.Size(44, 17);
+            this.skinLabelNone.TabIndex = 59;
+            this.skinLabelNone.Text = "无色环";
             // 
             // RedNumber
             // 
@@ -378,7 +363,7 @@ namespace IdentitySys
             this.RedNumber.IsSystemPasswordChar = false;
             this.RedNumber.Lines = new string[] {
         "0"};
-            this.RedNumber.Location = new System.Drawing.Point(1047, 17);
+            this.RedNumber.Location = new System.Drawing.Point(970, 35);
             this.RedNumber.Margin = new System.Windows.Forms.Padding(0);
             this.RedNumber.MaxLength = 32767;
             this.RedNumber.MinimumSize = new System.Drawing.Size(28, 28);
@@ -407,6 +392,226 @@ namespace IdentitySys
             this.RedNumber.TabIndex = 50;
             this.RedNumber.Text = "0";
             this.RedNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.RedNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.RedNumber.WaterText = "";
+            this.RedNumber.WordWrap = true;
+            // 
+            // BlueNumber
+            // 
+            this.BlueNumber.BackColor = System.Drawing.Color.Transparent;
+            this.BlueNumber.DownBack = null;
+            this.BlueNumber.Icon = null;
+            this.BlueNumber.IconIsButton = false;
+            this.BlueNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.BlueNumber.IsPasswordChat = '\0';
+            this.BlueNumber.IsSystemPasswordChar = false;
+            this.BlueNumber.Lines = new string[] {
+        "0"};
+            this.BlueNumber.Location = new System.Drawing.Point(1025, 35);
+            this.BlueNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.BlueNumber.MaxLength = 32767;
+            this.BlueNumber.MinimumSize = new System.Drawing.Size(28, 28);
+            this.BlueNumber.MouseBack = null;
+            this.BlueNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.BlueNumber.Multiline = false;
+            this.BlueNumber.Name = "BlueNumber";
+            this.BlueNumber.NormlBack = null;
+            this.BlueNumber.Padding = new System.Windows.Forms.Padding(5);
+            this.BlueNumber.ReadOnly = false;
+            this.BlueNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.BlueNumber.Size = new System.Drawing.Size(43, 28);
+            // 
+            // 
+            // 
+            this.BlueNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BlueNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BlueNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.BlueNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.BlueNumber.SkinTxt.Name = "BaseText";
+            this.BlueNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
+            this.BlueNumber.SkinTxt.TabIndex = 0;
+            this.BlueNumber.SkinTxt.Text = "0";
+            this.BlueNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.BlueNumber.SkinTxt.WaterText = "";
+            this.BlueNumber.TabIndex = 51;
+            this.BlueNumber.Text = "0";
+            this.BlueNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.BlueNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.BlueNumber.WaterText = "";
+            this.BlueNumber.WordWrap = true;
+            // 
+            // GreenNumber
+            // 
+            this.GreenNumber.BackColor = System.Drawing.Color.Transparent;
+            this.GreenNumber.DownBack = null;
+            this.GreenNumber.Icon = null;
+            this.GreenNumber.IconIsButton = false;
+            this.GreenNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.GreenNumber.IsPasswordChat = '\0';
+            this.GreenNumber.IsSystemPasswordChar = false;
+            this.GreenNumber.Lines = new string[] {
+        "0"};
+            this.GreenNumber.Location = new System.Drawing.Point(1080, 35);
+            this.GreenNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.GreenNumber.MaxLength = 32767;
+            this.GreenNumber.MinimumSize = new System.Drawing.Size(28, 28);
+            this.GreenNumber.MouseBack = null;
+            this.GreenNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.GreenNumber.Multiline = false;
+            this.GreenNumber.Name = "GreenNumber";
+            this.GreenNumber.NormlBack = null;
+            this.GreenNumber.Padding = new System.Windows.Forms.Padding(5);
+            this.GreenNumber.ReadOnly = false;
+            this.GreenNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.GreenNumber.Size = new System.Drawing.Size(43, 28);
+            // 
+            // 
+            // 
+            this.GreenNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.GreenNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GreenNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.GreenNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.GreenNumber.SkinTxt.Name = "BaseText";
+            this.GreenNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
+            this.GreenNumber.SkinTxt.TabIndex = 0;
+            this.GreenNumber.SkinTxt.Text = "0";
+            this.GreenNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.GreenNumber.SkinTxt.WaterText = "";
+            this.GreenNumber.TabIndex = 52;
+            this.GreenNumber.Text = "0";
+            this.GreenNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.GreenNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.GreenNumber.WaterText = "";
+            this.GreenNumber.WordWrap = true;
+            // 
+            // YellowNumber
+            // 
+            this.YellowNumber.BackColor = System.Drawing.Color.Transparent;
+            this.YellowNumber.DownBack = null;
+            this.YellowNumber.Icon = null;
+            this.YellowNumber.IconIsButton = false;
+            this.YellowNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.YellowNumber.IsPasswordChat = '\0';
+            this.YellowNumber.IsSystemPasswordChar = false;
+            this.YellowNumber.Lines = new string[] {
+        "0"};
+            this.YellowNumber.Location = new System.Drawing.Point(1135, 35);
+            this.YellowNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.YellowNumber.MaxLength = 32767;
+            this.YellowNumber.MinimumSize = new System.Drawing.Size(28, 28);
+            this.YellowNumber.MouseBack = null;
+            this.YellowNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.YellowNumber.Multiline = false;
+            this.YellowNumber.Name = "YellowNumber";
+            this.YellowNumber.NormlBack = null;
+            this.YellowNumber.Padding = new System.Windows.Forms.Padding(5);
+            this.YellowNumber.ReadOnly = false;
+            this.YellowNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.YellowNumber.Size = new System.Drawing.Size(43, 28);
+            // 
+            // 
+            // 
+            this.YellowNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.YellowNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.YellowNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.YellowNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.YellowNumber.SkinTxt.Name = "BaseText";
+            this.YellowNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
+            this.YellowNumber.SkinTxt.TabIndex = 0;
+            this.YellowNumber.SkinTxt.Text = "0";
+            this.YellowNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.YellowNumber.SkinTxt.WaterText = "";
+            this.YellowNumber.TabIndex = 53;
+            this.YellowNumber.Text = "0";
+            this.YellowNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.YellowNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.YellowNumber.WaterText = "";
+            this.YellowNumber.WordWrap = true;
+            // 
+            // WhiteNumber
+            // 
+            this.WhiteNumber.BackColor = System.Drawing.Color.Transparent;
+            this.WhiteNumber.DownBack = null;
+            this.WhiteNumber.Icon = null;
+            this.WhiteNumber.IconIsButton = false;
+            this.WhiteNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.WhiteNumber.IsPasswordChat = '\0';
+            this.WhiteNumber.IsSystemPasswordChar = false;
+            this.WhiteNumber.Lines = new string[] {
+        "0"};
+            this.WhiteNumber.Location = new System.Drawing.Point(1190, 35);
+            this.WhiteNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.WhiteNumber.MaxLength = 32767;
+            this.WhiteNumber.MinimumSize = new System.Drawing.Size(28, 28);
+            this.WhiteNumber.MouseBack = null;
+            this.WhiteNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.WhiteNumber.Multiline = false;
+            this.WhiteNumber.Name = "WhiteNumber";
+            this.WhiteNumber.NormlBack = null;
+            this.WhiteNumber.Padding = new System.Windows.Forms.Padding(5);
+            this.WhiteNumber.ReadOnly = false;
+            this.WhiteNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.WhiteNumber.Size = new System.Drawing.Size(43, 28);
+            // 
+            // 
+            // 
+            this.WhiteNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.WhiteNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WhiteNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.WhiteNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.WhiteNumber.SkinTxt.Name = "BaseText";
+            this.WhiteNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
+            this.WhiteNumber.SkinTxt.TabIndex = 0;
+            this.WhiteNumber.SkinTxt.Text = "0";
+            this.WhiteNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.WhiteNumber.SkinTxt.WaterText = "";
+            this.WhiteNumber.TabIndex = 54;
+            this.WhiteNumber.Text = "0";
+            this.WhiteNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.WhiteNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.WhiteNumber.WaterText = "";
+            this.WhiteNumber.WordWrap = true;
+            // 
+            // NoneNumber
+            // 
+            this.NoneNumber.BackColor = System.Drawing.Color.Transparent;
+            this.NoneNumber.DownBack = null;
+            this.NoneNumber.Icon = null;
+            this.NoneNumber.IconIsButton = false;
+            this.NoneNumber.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.NoneNumber.IsPasswordChat = '\0';
+            this.NoneNumber.IsSystemPasswordChar = false;
+            this.NoneNumber.Lines = new string[] {
+        "0"};
+            this.NoneNumber.Location = new System.Drawing.Point(1245, 35);
+            this.NoneNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.NoneNumber.MaxLength = 32767;
+            this.NoneNumber.MinimumSize = new System.Drawing.Size(28, 28);
+            this.NoneNumber.MouseBack = null;
+            this.NoneNumber.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.NoneNumber.Multiline = false;
+            this.NoneNumber.Name = "NoneNumber";
+            this.NoneNumber.NormlBack = null;
+            this.NoneNumber.Padding = new System.Windows.Forms.Padding(5);
+            this.NoneNumber.ReadOnly = false;
+            this.NoneNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.NoneNumber.Size = new System.Drawing.Size(43, 28);
+            // 
+            // 
+            // 
+            this.NoneNumber.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.NoneNumber.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NoneNumber.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.NoneNumber.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.NoneNumber.SkinTxt.Name = "BaseText";
+            this.NoneNumber.SkinTxt.Size = new System.Drawing.Size(33, 39);
+            this.NoneNumber.SkinTxt.TabIndex = 0;
+            this.NoneNumber.SkinTxt.Text = "0";
+            this.NoneNumber.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.NoneNumber.SkinTxt.WaterText = "";
+            this.NoneNumber.TabIndex = 55;
+            this.NoneNumber.Text = "0";
+            this.NoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.RedNumber.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.RedNumber.WaterText = "";
             this.RedNumber.WordWrap = true;
@@ -2120,6 +2325,8 @@ namespace IdentitySys
             // 
             this.skinGroupBox10.BackColor = System.Drawing.Color.Transparent;
             this.skinGroupBox10.BorderColor = System.Drawing.Color.White;
+            this.skinGroupBox10.Controls.Add(this.grpSerialOutput);
+            this.skinGroupBox10.Controls.Add(this.grpColorPriority);
             this.skinGroupBox10.Controls.Add(this.ImageTest);
             this.skinGroupBox10.Controls.Add(this.btnChangePassword);
             this.skinGroupBox10.Controls.Add(this.btnCounterManage);
@@ -2137,6 +2344,280 @@ namespace IdentitySys
             this.skinGroupBox10.TitleBorderColor = System.Drawing.Color.White;
             this.skinGroupBox10.TitleRectBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(120)))), ((int)(((byte)(194)))));
             this.skinGroupBox10.TitleRoundStyle = CCWin.SkinClass.RoundStyle.All;
+            // 
+            // grpColorPriority
+            // 
+            this.grpColorPriority.BackColor = System.Drawing.Color.Transparent;
+            this.grpColorPriority.BorderColor = System.Drawing.Color.White;
+            this.grpColorPriority.Controls.Add(this.lblPriority1);
+            this.grpColorPriority.Controls.Add(this.lblPriority2);
+            this.grpColorPriority.Controls.Add(this.lblPriority3);
+            this.grpColorPriority.Controls.Add(this.lblPriority4);
+            this.grpColorPriority.Controls.Add(this.lblPriority5);
+            this.grpColorPriority.Controls.Add(this.cboPriority1);
+            this.grpColorPriority.Controls.Add(this.cboPriority2);
+            this.grpColorPriority.Controls.Add(this.cboPriority3);
+            this.grpColorPriority.Controls.Add(this.cboPriority4);
+            this.grpColorPriority.Controls.Add(this.cboPriority5);
+            this.grpColorPriority.ForeColor = System.Drawing.Color.White;
+            this.grpColorPriority.Location = new System.Drawing.Point(180, 47);
+            this.grpColorPriority.Name = "grpColorPriority";
+            this.grpColorPriority.RectBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(120)))), ((int)(((byte)(194)))));
+            this.grpColorPriority.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.grpColorPriority.Size = new System.Drawing.Size(180, 272);
+            this.grpColorPriority.TabIndex = 50;
+            this.grpColorPriority.TabStop = false;
+            this.grpColorPriority.Text = "颜色判别优先级设置";
+            this.grpColorPriority.TitleBorderColor = System.Drawing.Color.White;
+            this.grpColorPriority.TitleRectBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(120)))), ((int)(((byte)(194)))));
+            this.grpColorPriority.TitleRoundStyle = CCWin.SkinClass.RoundStyle.All;
+            // 
+            // lblPriority1
+            // 
+            this.lblPriority1.AutoSize = true;
+            this.lblPriority1.BackColor = System.Drawing.Color.Transparent;
+            this.lblPriority1.BorderColor = System.Drawing.Color.White;
+            this.lblPriority1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPriority1.ForeColor = System.Drawing.Color.White;
+            this.lblPriority1.Location = new System.Drawing.Point(15, 40);
+            this.lblPriority1.Name = "lblPriority1";
+            this.lblPriority1.Size = new System.Drawing.Size(17, 19);
+            this.lblPriority1.TabIndex = 10;
+            this.lblPriority1.Text = "1";
+            // 
+            // lblPriority2
+            // 
+            this.lblPriority2.AutoSize = true;
+            this.lblPriority2.BackColor = System.Drawing.Color.Transparent;
+            this.lblPriority2.BorderColor = System.Drawing.Color.White;
+            this.lblPriority2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPriority2.ForeColor = System.Drawing.Color.White;
+            this.lblPriority2.Location = new System.Drawing.Point(15, 88);
+            this.lblPriority2.Name = "lblPriority2";
+            this.lblPriority2.Size = new System.Drawing.Size(17, 19);
+            this.lblPriority2.TabIndex = 11;
+            this.lblPriority2.Text = "2";
+            // 
+            // lblPriority3
+            // 
+            this.lblPriority3.AutoSize = true;
+            this.lblPriority3.BackColor = System.Drawing.Color.Transparent;
+            this.lblPriority3.BorderColor = System.Drawing.Color.White;
+            this.lblPriority3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPriority3.ForeColor = System.Drawing.Color.White;
+            this.lblPriority3.Location = new System.Drawing.Point(15, 136);
+            this.lblPriority3.Name = "lblPriority3";
+            this.lblPriority3.Size = new System.Drawing.Size(17, 19);
+            this.lblPriority3.TabIndex = 12;
+            this.lblPriority3.Text = "3";
+            // 
+            // lblPriority4
+            // 
+            this.lblPriority4.AutoSize = true;
+            this.lblPriority4.BackColor = System.Drawing.Color.Transparent;
+            this.lblPriority4.BorderColor = System.Drawing.Color.White;
+            this.lblPriority4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPriority4.ForeColor = System.Drawing.Color.White;
+            this.lblPriority4.Location = new System.Drawing.Point(15, 184);
+            this.lblPriority4.Name = "lblPriority4";
+            this.lblPriority4.Size = new System.Drawing.Size(17, 19);
+            this.lblPriority4.TabIndex = 13;
+            this.lblPriority4.Text = "4";
+            // 
+            // lblPriority5
+            // 
+            this.lblPriority5.AutoSize = true;
+            this.lblPriority5.BackColor = System.Drawing.Color.Transparent;
+            this.lblPriority5.BorderColor = System.Drawing.Color.White;
+            this.lblPriority5.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPriority5.ForeColor = System.Drawing.Color.White;
+            this.lblPriority5.Location = new System.Drawing.Point(15, 232);
+            this.lblPriority5.Name = "lblPriority5";
+            this.lblPriority5.Size = new System.Drawing.Size(17, 19);
+            this.lblPriority5.TabIndex = 14;
+            this.lblPriority5.Text = "5";
+            // 
+            // cboPriority1
+            // 
+            this.cboPriority1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPriority1.FormattingEnabled = true;
+            this.cboPriority1.Location = new System.Drawing.Point(45, 37);
+            this.cboPriority1.Name = "cboPriority1";
+            this.cboPriority1.Size = new System.Drawing.Size(100, 25);
+            this.cboPriority1.TabIndex = 20;
+            // 
+            // cboPriority2
+            // 
+            this.cboPriority2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPriority2.FormattingEnabled = true;
+            this.cboPriority2.Location = new System.Drawing.Point(45, 85);
+            this.cboPriority2.Name = "cboPriority2";
+            this.cboPriority2.Size = new System.Drawing.Size(100, 25);
+            this.cboPriority2.TabIndex = 21;
+            // 
+            // cboPriority3
+            // 
+            this.cboPriority3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPriority3.FormattingEnabled = true;
+            this.cboPriority3.Location = new System.Drawing.Point(45, 133);
+            this.cboPriority3.Name = "cboPriority3";
+            this.cboPriority3.Size = new System.Drawing.Size(100, 25);
+            this.cboPriority3.TabIndex = 22;
+            // 
+            // cboPriority4
+            // 
+            this.cboPriority4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPriority4.FormattingEnabled = true;
+            this.cboPriority4.Location = new System.Drawing.Point(45, 181);
+            this.cboPriority4.Name = "cboPriority4";
+            this.cboPriority4.Size = new System.Drawing.Size(100, 25);
+            this.cboPriority4.TabIndex = 23;
+            // 
+            // cboPriority5
+            // 
+            this.cboPriority5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPriority5.FormattingEnabled = true;
+            this.cboPriority5.Location = new System.Drawing.Point(45, 229);
+            this.cboPriority5.Name = "cboPriority5";
+            this.cboPriority5.Size = new System.Drawing.Size(100, 25);
+            this.cboPriority5.TabIndex = 24;
+            // 
+            // grpSerialOutput
+            // 
+            this.grpSerialOutput.BackColor = System.Drawing.Color.Transparent;
+            this.grpSerialOutput.BorderColor = System.Drawing.Color.White;
+            this.grpSerialOutput.Controls.Add(this.cboOutputRed);
+            this.grpSerialOutput.Controls.Add(this.cboOutputBlue);
+            this.grpSerialOutput.Controls.Add(this.cboOutputGreen);
+            this.grpSerialOutput.Controls.Add(this.cboOutputYellow);
+            this.grpSerialOutput.Controls.Add(this.cboOutputWhite);
+            this.grpSerialOutput.Controls.Add(this.lblOutputRed);
+            this.grpSerialOutput.Controls.Add(this.lblOutputBlue);
+            this.grpSerialOutput.Controls.Add(this.lblOutputGreen);
+            this.grpSerialOutput.Controls.Add(this.lblOutputYellow);
+            this.grpSerialOutput.Controls.Add(this.lblOutputWhite);
+            this.grpSerialOutput.ForeColor = System.Drawing.Color.White;
+            this.grpSerialOutput.Location = new System.Drawing.Point(380, 47);
+            this.grpSerialOutput.Name = "grpSerialOutput";
+            this.grpSerialOutput.RectBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(120)))), ((int)(((byte)(194)))));
+            this.grpSerialOutput.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.grpSerialOutput.Size = new System.Drawing.Size(180, 272);
+            this.grpSerialOutput.TabIndex = 51;
+            this.grpSerialOutput.TabStop = false;
+            this.grpSerialOutput.Text = "串口输出设置";
+            this.grpSerialOutput.TitleBorderColor = System.Drawing.Color.White;
+            this.grpSerialOutput.TitleRectBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(120)))), ((int)(((byte)(194)))));
+            this.grpSerialOutput.TitleRoundStyle = CCWin.SkinClass.RoundStyle.All;
+            // 
+            // cboOutputRed
+            // 
+            this.cboOutputRed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutputRed.FormattingEnabled = true;
+            this.cboOutputRed.Location = new System.Drawing.Point(55, 37);
+            this.cboOutputRed.Name = "cboOutputRed";
+            this.cboOutputRed.Size = new System.Drawing.Size(80, 25);
+            this.cboOutputRed.TabIndex = 30;
+            // 
+            // cboOutputBlue
+            // 
+            this.cboOutputBlue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutputBlue.FormattingEnabled = true;
+            this.cboOutputBlue.Location = new System.Drawing.Point(55, 85);
+            this.cboOutputBlue.Name = "cboOutputBlue";
+            this.cboOutputBlue.Size = new System.Drawing.Size(80, 25);
+            this.cboOutputBlue.TabIndex = 31;
+            // 
+            // cboOutputGreen
+            // 
+            this.cboOutputGreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutputGreen.FormattingEnabled = true;
+            this.cboOutputGreen.Location = new System.Drawing.Point(55, 133);
+            this.cboOutputGreen.Name = "cboOutputGreen";
+            this.cboOutputGreen.Size = new System.Drawing.Size(80, 25);
+            this.cboOutputGreen.TabIndex = 32;
+            // 
+            // cboOutputYellow
+            // 
+            this.cboOutputYellow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutputYellow.FormattingEnabled = true;
+            this.cboOutputYellow.Location = new System.Drawing.Point(55, 181);
+            this.cboOutputYellow.Name = "cboOutputYellow";
+            this.cboOutputYellow.Size = new System.Drawing.Size(80, 25);
+            this.cboOutputYellow.TabIndex = 33;
+            // 
+            // cboOutputWhite
+            // 
+            this.cboOutputWhite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutputWhite.FormattingEnabled = true;
+            this.cboOutputWhite.Location = new System.Drawing.Point(55, 229);
+            this.cboOutputWhite.Name = "cboOutputWhite";
+            this.cboOutputWhite.Size = new System.Drawing.Size(80, 25);
+            this.cboOutputWhite.TabIndex = 34;
+            // 
+            // lblOutputRed
+            // 
+            this.lblOutputRed.AutoSize = true;
+            this.lblOutputRed.BackColor = System.Drawing.Color.Transparent;
+            this.lblOutputRed.BorderColor = System.Drawing.Color.White;
+            this.lblOutputRed.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblOutputRed.ForeColor = System.Drawing.Color.White;
+            this.lblOutputRed.Location = new System.Drawing.Point(15, 40);
+            this.lblOutputRed.Name = "lblOutputRed";
+            this.lblOutputRed.Size = new System.Drawing.Size(32, 17);
+            this.lblOutputRed.TabIndex = 40;
+            this.lblOutputRed.Text = "红色";
+            // 
+            // lblOutputBlue
+            // 
+            this.lblOutputBlue.AutoSize = true;
+            this.lblOutputBlue.BackColor = System.Drawing.Color.Transparent;
+            this.lblOutputBlue.BorderColor = System.Drawing.Color.White;
+            this.lblOutputBlue.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblOutputBlue.ForeColor = System.Drawing.Color.White;
+            this.lblOutputBlue.Location = new System.Drawing.Point(15, 88);
+            this.lblOutputBlue.Name = "lblOutputBlue";
+            this.lblOutputBlue.Size = new System.Drawing.Size(32, 17);
+            this.lblOutputBlue.TabIndex = 41;
+            this.lblOutputBlue.Text = "蓝色";
+            // 
+            // lblOutputGreen
+            // 
+            this.lblOutputGreen.AutoSize = true;
+            this.lblOutputGreen.BackColor = System.Drawing.Color.Transparent;
+            this.lblOutputGreen.BorderColor = System.Drawing.Color.White;
+            this.lblOutputGreen.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblOutputGreen.ForeColor = System.Drawing.Color.White;
+            this.lblOutputGreen.Location = new System.Drawing.Point(15, 136);
+            this.lblOutputGreen.Name = "lblOutputGreen";
+            this.lblOutputGreen.Size = new System.Drawing.Size(32, 17);
+            this.lblOutputGreen.TabIndex = 42;
+            this.lblOutputGreen.Text = "绿色";
+            // 
+            // lblOutputYellow
+            // 
+            this.lblOutputYellow.AutoSize = true;
+            this.lblOutputYellow.BackColor = System.Drawing.Color.Transparent;
+            this.lblOutputYellow.BorderColor = System.Drawing.Color.White;
+            this.lblOutputYellow.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblOutputYellow.ForeColor = System.Drawing.Color.White;
+            this.lblOutputYellow.Location = new System.Drawing.Point(15, 184);
+            this.lblOutputYellow.Name = "lblOutputYellow";
+            this.lblOutputYellow.Size = new System.Drawing.Size(32, 17);
+            this.lblOutputYellow.TabIndex = 43;
+            this.lblOutputYellow.Text = "黄色";
+            // 
+            // lblOutputWhite
+            // 
+            this.lblOutputWhite.AutoSize = true;
+            this.lblOutputWhite.BackColor = System.Drawing.Color.Transparent;
+            this.lblOutputWhite.BorderColor = System.Drawing.Color.White;
+            this.lblOutputWhite.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblOutputWhite.ForeColor = System.Drawing.Color.White;
+            this.lblOutputWhite.Location = new System.Drawing.Point(15, 232);
+            this.lblOutputWhite.Name = "lblOutputWhite";
+            this.lblOutputWhite.Size = new System.Drawing.Size(32, 17);
+            this.lblOutputWhite.TabIndex = 44;
+            this.lblOutputWhite.Text = "白色";
             // 
             // ImageTest
             // 
@@ -2371,6 +2852,28 @@ namespace IdentitySys
         private CommonLibrary.myButton btnDeleteRecord;
         private CommonLibrary.myButton btnChangePassword;
         private SkinGroupBox skinGroupBox10;
+        private SkinGroupBox grpColorPriority;
+        private SkinLabel lblPriority1;
+        private SkinLabel lblPriority2;
+        private SkinLabel lblPriority3;
+        private SkinLabel lblPriority4;
+        private SkinLabel lblPriority5;
+        private System.Windows.Forms.ComboBox cboPriority1;
+        private System.Windows.Forms.ComboBox cboPriority2;
+        private System.Windows.Forms.ComboBox cboPriority3;
+        private System.Windows.Forms.ComboBox cboPriority4;
+        private System.Windows.Forms.ComboBox cboPriority5;
+        private SkinGroupBox grpSerialOutput;
+        private SkinLabel lblOutputRed;
+        private SkinLabel lblOutputBlue;
+        private SkinLabel lblOutputGreen;
+        private SkinLabel lblOutputYellow;
+        private SkinLabel lblOutputWhite;
+        private System.Windows.Forms.ComboBox cboOutputRed;
+        private System.Windows.Forms.ComboBox cboOutputBlue;
+        private System.Windows.Forms.ComboBox cboOutputGreen;
+        private System.Windows.Forms.ComboBox cboOutputYellow;
+        private System.Windows.Forms.ComboBox cboOutputWhite;
         private myButton btnLevel2Store;
         private myButton btnStopTest;
         private myButton btnContinueTest;
@@ -2433,11 +2936,17 @@ namespace IdentitySys
         private myButton LastTubeColor;
         private SkinLabel skinLabel4;
         private SkinTextBox RedNumber;
-        private SkinLabel skinLabel7;
-        private SkinLabel skinLabel6;
-        private SkinLabel skinLabel5;
-        private SkinTextBox OtherColorNumber;
+        private SkinTextBox BlueNumber;
+        private SkinTextBox GreenNumber;
+        private SkinTextBox YellowNumber;
         private SkinTextBox WhiteNumber;
+        private SkinTextBox NoneNumber;
+        private SkinLabel skinLabelRed;
+        private SkinLabel skinLabelBlue;
+        private SkinLabel skinLabelGreen;
+        private SkinLabel skinLabelYellow;
+        private SkinLabel skinLabelWhite;
+        private SkinLabel skinLabelNone;
         private myButton ClearNum;
         private myButton ImageTest;
     }

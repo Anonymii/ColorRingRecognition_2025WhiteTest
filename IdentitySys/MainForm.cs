@@ -86,6 +86,8 @@ namespace IdentitySys
             identity.showMessageEvent += showMessage;
             //locate.showMessageEvent += showMessage;
             InitializeComponent();
+            InitColorPriorityComboBoxes();  // 初始化颜色优先级下拉框
+            InitSerialOutputComboBoxes();   // 初始化串口输出下拉框
             ReadConfig(m_newConfig);
             MemeToUI();
             m_oPTController = new OPTControllerAPI();
@@ -109,8 +111,11 @@ namespace IdentitySys
         {
             tbIntensity.Text = m_newConfig.m_intensity.ToString();
             RedNumber.Text = m_newConfig.m_RedNumber.ToString();
+            BlueNumber.Text = m_newConfig.m_BlueNumber.ToString();
+            GreenNumber.Text = m_newConfig.m_GreenNumber.ToString();
+            YellowNumber.Text = m_newConfig.m_YellowNumber.ToString();
             WhiteNumber.Text = m_newConfig.m_WhiteNumber.ToString();
-            OtherColorNumber.Text = m_newConfig.m_OtherColorNumber.ToString();
+            NoneNumber.Text = m_newConfig.m_NoneNumber.ToString();
             CameraDelayTime.Text = m_newConfig.CameraDelayTime.ToString();
             tbFetchPath.Text = m_newConfig.m_imageFetchPath;
             coloridentity.Text = m_newConfig.m_colorImageSavePath;
@@ -120,6 +125,11 @@ namespace IdentitySys
             rbDebug.Checked = m_newConfig.m_bDebug;
             tbImagePath.Text = m_newConfig.m_imagePath;
             tbLightIPAddress.Text = m_newConfig.m_lightIPAddress;
+
+            // 加载颜色优先级设置
+            LoadColorPriorityToUI();
+            // 加载串口输出设置
+            LoadSerialOutputToUI();
 
             //add by shj 2021.3.18
             btnCloseAll.Enabled = false;
@@ -133,8 +143,11 @@ namespace IdentitySys
             string str = LimitMotorPar(dir, XorZ);
             m_newConfig.m_intensity = Convert.ToInt32(tbIntensity.Text);
             m_newConfig.m_RedNumber = Convert.ToInt32(RedNumber.Text);
+            m_newConfig.m_BlueNumber = Convert.ToInt32(BlueNumber.Text);
+            m_newConfig.m_GreenNumber = Convert.ToInt32(GreenNumber.Text);
+            m_newConfig.m_YellowNumber = Convert.ToInt32(YellowNumber.Text);
             m_newConfig.m_WhiteNumber = Convert.ToInt32(WhiteNumber.Text);
-            m_newConfig.m_OtherColorNumber = Convert.ToInt32(OtherColorNumber.Text);
+            m_newConfig.m_NoneNumber = Convert.ToInt32(NoneNumber.Text);
             m_newConfig.m_imageFetchPath = tbFetchPath.Text;
             m_newConfig.m_colorImageSavePath = coloridentity.Text;
             m_newConfig.m_fetchInterval = Convert.ToInt32(tbFetchInterval.Text);
@@ -176,6 +189,9 @@ namespace IdentitySys
                 skinGroupBox9.Enabled = true;
                 skinGroupBoxOp.Enabled = true;
                 btnCounterManage.Enabled = btnDeleteRecord.Enabled = true;
+                // 管理员可以编辑颜色优先级和串口输出设置
+                SetColorPriorityEnabled(true);
+                SetSerialOutputEnabled(true);
                 this.Text = "测试系统-【" + loginInfo.Split(';')[1] + "；一级】";
                 showMessage("管理员登录");
             }
@@ -186,7 +202,9 @@ namespace IdentitySys
                 skinGroupBox7.Enabled = false;
                 skinGroupBox8.Enabled = false;
                 skinGroupBox9.Enabled = false;
-                skinGroupBox10.Enabled = false;
+                // skinGroupBox10保持启用，但禁用颜色优先级和串口输出下拉框（只读）
+                SetColorPriorityEnabled(false);
+                SetSerialOutputEnabled(false);
                 colortext.Visible = false;
                 btnCounterManage.Enabled = btnDeleteRecord.Enabled = false;
                 skinLabel2.Visible = true;// tubearrive.Visible = false;
@@ -675,7 +693,8 @@ namespace IdentitySys
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (m_newConfig.m_RedNumber != 0 || m_newConfig.m_WhiteNumber != 0 || m_newConfig.m_OtherColorNumber!= 0)
+            if (m_newConfig.m_RedNumber != 0 || m_newConfig.m_BlueNumber != 0 || m_newConfig.m_GreenNumber != 0 || 
+                m_newConfig.m_YellowNumber != 0 || m_newConfig.m_WhiteNumber != 0 || m_newConfig.m_NoneNumber != 0)
             {
                 if (DialogResult.OK == MessageBox.Show("计数未清零！", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning))
                 {
@@ -709,6 +728,8 @@ namespace IdentitySys
         private void btnLevel1Store_Click(object sender, EventArgs e)
         {
             UIToMemeLevel1();
+            SaveColorPriorityFromUI();  // 保存颜色优先级设置
+            SaveSerialOutputFromUI();   // 保存串口输出设置
             WriteConfig(m_newConfig);
             showMessage("系统参数设置 保存至配置文件 成功!");
         }
@@ -716,6 +737,8 @@ namespace IdentitySys
         private void btnLevel2Store_Click(object sender, EventArgs e)
         {
             UIToMemeLevel2(0,1);
+            SaveColorPriorityFromUI();  // 保存颜色优先级设置
+            SaveSerialOutputFromUI();   // 保存串口输出设置
             WriteConfig(m_newConfig);
             showMessage("高级系统设置 生效 并 保存至配置文件 成功!");
         }
@@ -1524,7 +1547,8 @@ namespace IdentitySys
                     return;
                 }
             }
-            if (m_newConfig.m_RedNumber != 0 || m_newConfig.m_WhiteNumber != 0 || m_newConfig.m_OtherColorNumber != 0)
+            if (m_newConfig.m_RedNumber != 0 || m_newConfig.m_BlueNumber != 0 || m_newConfig.m_GreenNumber != 0 || 
+                m_newConfig.m_YellowNumber != 0 || m_newConfig.m_WhiteNumber != 0 || m_newConfig.m_NoneNumber != 0)
             {
                 if (DialogResult.OK == MessageBox.Show("计数未清零！", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning))
                 {
@@ -1601,6 +1625,20 @@ namespace IdentitySys
             newConfig.m_motorMinZ = Convert.ToInt32(iniFile.IniReadValue("电机运动信息", "m_motorMinZ") == "" ? "-100" : iniFile.IniReadValue("电机运动信息", "m_motorMinZ"));
             newConfig.m_motorMaxX = Convert.ToInt32(iniFile.IniReadValue("电机运动信息", "m_motorMaxX") == "" ? "100" : iniFile.IniReadValue("电机运动信息", "m_motorMaxX"));
             newConfig.m_motorMaxZ = Convert.ToInt32(iniFile.IniReadValue("电机运动信息", "m_motorMaxZ") == "" ? "100" : iniFile.IniReadValue("电机运动信息", "m_motorMaxZ"));
+
+            // 读取颜色优先级配置
+            newConfig.m_ColorPriority1 = iniFile.IniReadValue("颜色优先级", "Priority1") == "" ? "Red" : iniFile.IniReadValue("颜色优先级", "Priority1");
+            newConfig.m_ColorPriority2 = iniFile.IniReadValue("颜色优先级", "Priority2") == "" ? "White" : iniFile.IniReadValue("颜色优先级", "Priority2");
+            newConfig.m_ColorPriority3 = iniFile.IniReadValue("颜色优先级", "Priority3") == "" ? "Blue" : iniFile.IniReadValue("颜色优先级", "Priority3");
+            newConfig.m_ColorPriority4 = iniFile.IniReadValue("颜色优先级", "Priority4") == "" ? "Yellow" : iniFile.IniReadValue("颜色优先级", "Priority4");
+            newConfig.m_ColorPriority5 = iniFile.IniReadValue("颜色优先级", "Priority5") == "" ? "Green" : iniFile.IniReadValue("颜色优先级", "Priority5");
+
+            // 读取串口输出配置
+            newConfig.m_OutputRed = iniFile.IniReadValue("串口输出", "OutputRed") == "" ? "Y1" : iniFile.IniReadValue("串口输出", "OutputRed");
+            newConfig.m_OutputBlue = iniFile.IniReadValue("串口输出", "OutputBlue") == "" ? "Y2" : iniFile.IniReadValue("串口输出", "OutputBlue");
+            newConfig.m_OutputGreen = iniFile.IniReadValue("串口输出", "OutputGreen") == "" ? "Y3" : iniFile.IniReadValue("串口输出", "OutputGreen");
+            newConfig.m_OutputYellow = iniFile.IniReadValue("串口输出", "OutputYellow") == "" ? "Y4" : iniFile.IniReadValue("串口输出", "OutputYellow");
+            newConfig.m_OutputWhite = iniFile.IniReadValue("串口输出", "OutputWhite") == "" ? "Y3&Y4" : iniFile.IniReadValue("串口输出", "OutputWhite");
         }
 
         private void WriteConfig(ConfigClass newConfig)
@@ -1632,6 +1670,20 @@ namespace IdentitySys
             iniFile.IniWriteValue("电机运动信息", "m_motorMinZ", newConfig.m_motorMinZ);
             iniFile.IniWriteValue("电机运动信息", "m_motorMaxX", newConfig.m_motorMaxX);
             iniFile.IniWriteValue("电机运动信息", "m_motorMaxZ", newConfig.m_motorMaxZ);
+
+            // 保存颜色优先级配置
+            iniFile.IniWriteValue("颜色优先级", "Priority1", newConfig.m_ColorPriority1);
+            iniFile.IniWriteValue("颜色优先级", "Priority2", newConfig.m_ColorPriority2);
+            iniFile.IniWriteValue("颜色优先级", "Priority3", newConfig.m_ColorPriority3);
+            iniFile.IniWriteValue("颜色优先级", "Priority4", newConfig.m_ColorPriority4);
+            iniFile.IniWriteValue("颜色优先级", "Priority5", newConfig.m_ColorPriority5);
+
+            // 保存串口输出配置
+            iniFile.IniWriteValue("串口输出", "OutputRed", newConfig.m_OutputRed);
+            iniFile.IniWriteValue("串口输出", "OutputBlue", newConfig.m_OutputBlue);
+            iniFile.IniWriteValue("串口输出", "OutputGreen", newConfig.m_OutputGreen);
+            iniFile.IniWriteValue("串口输出", "OutputYellow", newConfig.m_OutputYellow);
+            iniFile.IniWriteValue("串口输出", "OutputWhite", newConfig.m_OutputWhite);
         }
         // 传入文件路径，返回文件路径所在硬盘空间是否大于200M
         bool JustFreeSpaceFun(string path)
@@ -1840,11 +1892,11 @@ namespace IdentitySys
 
                             //if (TimerForOut == 15)
                             //{
-                            if (FinalTubeColor == "White")
+                            if (!string.IsNullOrEmpty(FinalTubeColor) && FinalTubeColor != "无色环")
                         {
-                            m_motor.OutputColorResult("Red");
+                            OutputColorByConfig(FinalTubeColor);  // 根据配置输出对应指令
                             Thread.Sleep(1500);//输出信号持续一秒
-                            m_motor.OutputColorResult("CloseAll");//关闭IO卡
+                            m_motor.OutputByCommand("CloseAll");//关闭IO卡
                         }
                            
                             if (m_motor.tunelIsInpos == 1)//油管到位
@@ -2001,50 +2053,51 @@ namespace IdentitySys
             return TubeColor;
         }
         
-        //优先级判断函数，输出色环数组最后结果
+        //优先级判断函数，输出色环数组最后结果（根据配置的优先级顺序判断）
         private string ColorOfTheWholeTube()
         {
             string str = null;
             if (strListColoeMessage.Count != 0)
             {
-                if (strListColoeMessage.Contains("Red"))//判断数组中是否有Red红色
+                // 获取配置的颜色优先级列表
+                List<string> priorities = GetColorPriorityList();
+                
+                // 按优先级顺序检查是否包含该颜色
+                foreach (string color in priorities)
                 {
-                    str = "Red";
-                    m_newConfig.m_RedNumber++;
-                    return str;
+                    if (strListColoeMessage.Contains(color))
+                    {
+                        str = color;
+                        IncrementColorCount(color);
+                        return str;
+                    }
                 }
-                else if (strListColoeMessage.Contains("White"))
-                {
-                    str = "White";
-                    m_newConfig.m_WhiteNumber++;
-                    return str;
-                }
-                else if (strListColoeMessage.Contains("Blue"))
-                {
-                    str = "Blue";
-                    m_newConfig.m_OtherColorNumber++;
-                    return str;
-                }
-                else if (strListColoeMessage.Contains("Yellow"))
-                {
-                    str = "Yellow";
-                    m_newConfig.m_OtherColorNumber++;
-                    return str;
-                }
-                else if (strListColoeMessage.Contains("Green"))
-                {
-                    str = "Green";
-                    m_newConfig.m_OtherColorNumber++;
-                    return str;
-                }
+                
+                // 如果识别到的颜色都不在优先级列表中，则识别为"无色环"
+                str = "无色环";
+                m_newConfig.m_NoneNumber++;
+                return str;
             }
             else if(strListColoeMessage.Count == 0)
             {
                 str = "无色环";
-                m_newConfig.m_OtherColorNumber++;
+                m_newConfig.m_NoneNumber++;
                 return str;
             }
-            return "White";
+            return "无色环";
+        }
+
+        // 根据颜色名称增加对应的计数
+        private void IncrementColorCount(string color)
+        {
+            switch (color)
+            {
+                case "Red": m_newConfig.m_RedNumber++; break;
+                case "Blue": m_newConfig.m_BlueNumber++; break;
+                case "Green": m_newConfig.m_GreenNumber++; break;
+                case "Yellow": m_newConfig.m_YellowNumber++; break;
+                case "White": m_newConfig.m_WhiteNumber++; break;
+            }
         }
 
         //手动识别判断油管最后的颜色
@@ -2066,25 +2119,25 @@ namespace IdentitySys
             else if (yellowColor.BaseColor == Color.PaleGoldenrod)
             {
                 strColor = "Yellow";
-                m_newConfig.m_OtherColorNumber++;
+                m_newConfig.m_YellowNumber++;
                 return strColor;
             }
             else if (blueColor.BaseColor == Color.CornflowerBlue)
             {
                 strColor = "Blue";
-                m_newConfig.m_OtherColorNumber++;
+                m_newConfig.m_BlueNumber++;
                 return strColor;
             }
             else if (greenColor.BaseColor == Color.PaleGreen)
             {
                 strColor = "Green";
-                m_newConfig.m_OtherColorNumber++;
+                m_newConfig.m_GreenNumber++;
                 return strColor;
             }
             else
             {
                 strColor = "无色环";
-                m_newConfig.m_OtherColorNumber++;
+                m_newConfig.m_NoneNumber++;
                 return strColor;
             }
         }
@@ -2527,12 +2580,12 @@ namespace IdentitySys
                     WaitTimeForOutput++;
                     if (WaitTimeForOutput == 3)
                     {
-                        if (ManualColor == "White")
+                        if (!string.IsNullOrEmpty(ManualColor) && ManualColor != "无色环")
                         {
-                            m_motor.OutputColorResult("Red");
+                            OutputColorByConfig(ManualColor);  // 根据配置输出对应指令
                             //输出
                             Thread.Sleep(1500);//输出信号持续1.5秒
-                            m_motor.OutputColorResult("CloseAll");
+                            m_motor.OutputByCommand("CloseAll");
                         }
                       
                         //清空状态
@@ -2551,8 +2604,204 @@ namespace IdentitySys
         private void ShowNumber()
         {
             RedNumber.Text = m_newConfig.m_RedNumber.ToString();
+            BlueNumber.Text = m_newConfig.m_BlueNumber.ToString();
+            GreenNumber.Text = m_newConfig.m_GreenNumber.ToString();
+            YellowNumber.Text = m_newConfig.m_YellowNumber.ToString();
             WhiteNumber.Text = m_newConfig.m_WhiteNumber.ToString();
-            OtherColorNumber.Text = m_newConfig.m_OtherColorNumber.ToString();
+            NoneNumber.Text = m_newConfig.m_NoneNumber.ToString();
+        }
+
+        // 初始化颜色优先级下拉框
+        private void InitColorPriorityComboBoxes()
+        {
+            string[] colorItems = { "红色", "蓝色", "绿色", "黄色", "白色", "NULL" };
+            ComboBox[] cboList = { cboPriority1, cboPriority2, cboPriority3, cboPriority4, cboPriority5 };
+            
+            foreach (ComboBox cbo in cboList)
+            {
+                cbo.Items.Clear();
+                cbo.Items.AddRange(colorItems);
+            }
+        }
+
+        // 设置颜色优先级下拉框是否可编辑
+        private void SetColorPriorityEnabled(bool enabled)
+        {
+            cboPriority1.Enabled = enabled;
+            cboPriority2.Enabled = enabled;
+            cboPriority3.Enabled = enabled;
+            cboPriority4.Enabled = enabled;
+            cboPriority5.Enabled = enabled;
+        }
+
+        // 将配置中的颜色优先级显示到下拉框
+        private void LoadColorPriorityToUI()
+        {
+            cboPriority1.SelectedIndex = ColorNameToIndex(m_newConfig.m_ColorPriority1);
+            cboPriority2.SelectedIndex = ColorNameToIndex(m_newConfig.m_ColorPriority2);
+            cboPriority3.SelectedIndex = ColorNameToIndex(m_newConfig.m_ColorPriority3);
+            cboPriority4.SelectedIndex = ColorNameToIndex(m_newConfig.m_ColorPriority4);
+            cboPriority5.SelectedIndex = ColorNameToIndex(m_newConfig.m_ColorPriority5);
+        }
+
+        // 从下拉框读取颜色优先级到配置
+        private void SaveColorPriorityFromUI()
+        {
+            m_newConfig.m_ColorPriority1 = IndexToColorName(cboPriority1.SelectedIndex);
+            m_newConfig.m_ColorPriority2 = IndexToColorName(cboPriority2.SelectedIndex);
+            m_newConfig.m_ColorPriority3 = IndexToColorName(cboPriority3.SelectedIndex);
+            m_newConfig.m_ColorPriority4 = IndexToColorName(cboPriority4.SelectedIndex);
+            m_newConfig.m_ColorPriority5 = IndexToColorName(cboPriority5.SelectedIndex);
+        }
+
+        // 颜色英文名转下拉框索引
+        private int ColorNameToIndex(string colorName)
+        {
+            switch (colorName)
+            {
+                case "Red": return 0;
+                case "Blue": return 1;
+                case "Green": return 2;
+                case "Yellow": return 3;
+                case "White": return 4;
+                case "NULL": return 5;
+                default: return 5;
+            }
+        }
+
+        // 下拉框索引转颜色英文名
+        private string IndexToColorName(int index)
+        {
+            switch (index)
+            {
+                case 0: return "Red";
+                case 1: return "Blue";
+                case 2: return "Green";
+                case 3: return "Yellow";
+                case 4: return "White";
+                case 5: return "NULL";
+                default: return "NULL";
+            }
+        }
+
+        // 获取当前颜色优先级列表（排除NULL）
+        private List<string> GetColorPriorityList()
+        {
+            List<string> priorities = new List<string>();
+            string[] configs = { 
+                m_newConfig.m_ColorPriority1, 
+                m_newConfig.m_ColorPriority2, 
+                m_newConfig.m_ColorPriority3, 
+                m_newConfig.m_ColorPriority4, 
+                m_newConfig.m_ColorPriority5 
+            };
+            foreach (string color in configs)
+            {
+                if (!string.IsNullOrEmpty(color) && color != "NULL")
+                {
+                    priorities.Add(color);
+                }
+            }
+            return priorities;
+        }
+
+        // 初始化串口输出下拉框
+        private void InitSerialOutputComboBoxes()
+        {
+            string[] outputItems = { "Y1", "Y2", "Y3", "Y4", "Y3&Y4" };
+            ComboBox[] cboList = { cboOutputRed, cboOutputBlue, cboOutputGreen, cboOutputYellow, cboOutputWhite };
+            
+            foreach (ComboBox cbo in cboList)
+            {
+                cbo.Items.Clear();
+                cbo.Items.AddRange(outputItems);
+            }
+        }
+
+        // 设置串口输出下拉框是否可编辑
+        private void SetSerialOutputEnabled(bool enabled)
+        {
+            cboOutputRed.Enabled = enabled;
+            cboOutputBlue.Enabled = enabled;
+            cboOutputGreen.Enabled = enabled;
+            cboOutputYellow.Enabled = enabled;
+            cboOutputWhite.Enabled = enabled;
+        }
+
+        // 将配置中的串口输出设置显示到下拉框
+        private void LoadSerialOutputToUI()
+        {
+            cboOutputRed.SelectedIndex = OutputNameToIndex(m_newConfig.m_OutputRed);
+            cboOutputBlue.SelectedIndex = OutputNameToIndex(m_newConfig.m_OutputBlue);
+            cboOutputGreen.SelectedIndex = OutputNameToIndex(m_newConfig.m_OutputGreen);
+            cboOutputYellow.SelectedIndex = OutputNameToIndex(m_newConfig.m_OutputYellow);
+            cboOutputWhite.SelectedIndex = OutputNameToIndex(m_newConfig.m_OutputWhite);
+        }
+
+        // 从下拉框读取串口输出设置到配置
+        private void SaveSerialOutputFromUI()
+        {
+            m_newConfig.m_OutputRed = IndexToOutputName(cboOutputRed.SelectedIndex);
+            m_newConfig.m_OutputBlue = IndexToOutputName(cboOutputBlue.SelectedIndex);
+            m_newConfig.m_OutputGreen = IndexToOutputName(cboOutputGreen.SelectedIndex);
+            m_newConfig.m_OutputYellow = IndexToOutputName(cboOutputYellow.SelectedIndex);
+            m_newConfig.m_OutputWhite = IndexToOutputName(cboOutputWhite.SelectedIndex);
+        }
+
+        // 输出名转下拉框索引
+        private int OutputNameToIndex(string outputName)
+        {
+            switch (outputName)
+            {
+                case "Y1": return 0;
+                case "Y2": return 1;
+                case "Y3": return 2;
+                case "Y4": return 3;
+                case "Y3&Y4": return 4;
+                default: return 0;
+            }
+        }
+
+        // 下拉框索引转输出名
+        private string IndexToOutputName(int index)
+        {
+            switch (index)
+            {
+                case 0: return "Y1";
+                case 1: return "Y2";
+                case 2: return "Y3";
+                case 3: return "Y4";
+                case 4: return "Y3&Y4";
+                default: return "Y1";
+            }
+        }
+
+        // 根据颜色获取配置的输出指令
+        private string GetOutputCommandForColor(string color)
+        {
+            switch (color)
+            {
+                case "Red": return m_newConfig.m_OutputRed;
+                case "Blue": return m_newConfig.m_OutputBlue;
+                case "Green": return m_newConfig.m_OutputGreen;
+                case "Yellow": return m_newConfig.m_OutputYellow;
+                case "White": return m_newConfig.m_OutputWhite;
+                default: return "Y1";
+            }
+        }
+
+        // 根据颜色输出对应的配置指令
+        private void OutputColorByConfig(string colorName)
+        {
+            if (colorName == "CloseAll" || colorName == "无色环")
+            {
+                m_motor.OutputByCommand("CloseAll");
+            }
+            else
+            {
+                string command = GetOutputCommandForColor(colorName);
+                m_motor.OutputByCommand(command);
+            }
         }
         private void myButton2_Click_1(object sender, EventArgs e)
         {
@@ -2761,12 +3010,13 @@ namespace IdentitySys
         //清空计数
         private void ClearNum_Click(object sender, EventArgs e)
         {
-            m_newConfig.m_RedNumber = m_newConfig.m_WhiteNumber = m_newConfig.m_OtherColorNumber = 0;
-            RedNumber.Text = m_newConfig.m_RedNumber.ToString();
-            WhiteNumber.Text = m_newConfig.m_WhiteNumber.ToString();
-
-            OtherColorNumber.Text = m_newConfig.m_OtherColorNumber.ToString();
-
+            m_newConfig.m_RedNumber = 0;
+            m_newConfig.m_BlueNumber = 0;
+            m_newConfig.m_GreenNumber = 0;
+            m_newConfig.m_YellowNumber = 0;
+            m_newConfig.m_WhiteNumber = 0;
+            m_newConfig.m_NoneNumber = 0;
+            ShowNumber();
         }
 
         private void ImageTest_Click(object sender, EventArgs e)
@@ -2825,11 +3075,11 @@ namespace IdentitySys
             ShowLastTubeColor(LastTubeColorSave);//界面显示色环判断结果
             ShowNumber();//界面显示色环识别计数结果
 
-            if (FinalTubeColor == "White")
+            if (!string.IsNullOrEmpty(FinalTubeColor) && FinalTubeColor != "无色环")
             {
-                m_motor.OutputColorResult("Red");
+                OutputColorByConfig(FinalTubeColor);  // 根据配置输出对应指令
                 Thread.Sleep(1500);//输出信号持续一秒
-                m_motor.OutputColorResult("CloseAll");//关闭IO卡
+                m_motor.OutputByCommand("CloseAll");//关闭IO卡
             }
 
         }

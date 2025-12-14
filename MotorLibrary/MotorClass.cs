@@ -484,6 +484,49 @@ namespace MotorLibrary
             }
 
         }
+
+        /// <summary>
+        /// 根据输出指令名称控制继电器（可配置版本）
+        /// </summary>
+        /// <param name="command">Y1/Y2/Y3/Y4/Y3&Y4/CloseAll</param>
+        /// <returns>1：成功 -1：失败</returns>
+        public int OutputByCommand(string command)
+        {
+            string[] cmdData;
+            switch (command)
+            {
+                case "Y1":
+                    cmdData = CalCRCPariy(conOpenY1RelayStr);
+                    break;
+                case "Y2":
+                    cmdData = CalCRCPariy(conOpenY2RelayStr);
+                    break;
+                case "Y3":
+                    cmdData = CalCRCPariy(conOpenY3RelayStr);
+                    break;
+                case "Y4":
+                    cmdData = CalCRCPariy(conOpenY4RelayStr);
+                    break;
+                case "Y3&Y4":
+                    cmdData = CalCRCPariy(conOpenY3AndY4RelayStr);
+                    break;
+                case "CloseAll":
+                    cmdData = CalCRCPariy(conCloseAllRelayStr);
+                    break;
+                default:
+                    cmdData = null;
+                    break;
+            }
+            if (cmdData != null)
+            {
+                SendRSData(cmdData, m_serialRelay);
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
         public void OpenY1ContinuTime(int time)
         {
             string[] Y1ConStr = GeynerateOpenContinueTimeY1Con(time);
